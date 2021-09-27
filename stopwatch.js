@@ -50,10 +50,14 @@ function toHHMMSSMS(msecs) {
   let seconds = secsDec;
   let milliseconds = msecs % 1000;
 
-  return [hours, minutes, seconds, milliseconds]
-    .map((v) => (v < 10 ? '0' + v : v))
-    .filter((v, i) => v !== '00' || i > 0)
-    .join(':');
+  return (
+    [hours, minutes, seconds]
+      .map((v) => (v < 10 ? '0' + v : v))
+      .filter((v, i) => v !== '00' || i > 0)
+      .join(':') +
+    '.' +
+    String(milliseconds).padStart(3, '0')
+  );
 }
 
 btnStartStopwatch.addEventListener('click', () => {
@@ -63,7 +67,7 @@ btnStartStopwatch.addEventListener('click', () => {
       isTicking = true;
       stopwatchPassedMS = 0;
       stopwatchStart = Date.now();
-      stopwatchInterval = setInterval(updateStopwatch, 100);
+      stopwatchInterval = setInterval(updateStopwatch, 10);
       break;
     case 'Stop':
       btnStartStopwatch.innerText = 'Resume';
@@ -76,7 +80,7 @@ btnStartStopwatch.addEventListener('click', () => {
       stopwatchStart = Date.now() - stopwatchPassedMS;
       stopwatchPassedMS = 0;
       isTicking = true;
-      stopwatchInterval = setInterval(updateStopwatch, 100);
+      stopwatchInterval = setInterval(updateStopwatch, 10);
       break;
   }
 });
