@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Import Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="styles.css">
+  <title>Alarms & Clock</title>
+</head>
+
+<body class="bg-dark text-light">
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-2">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <i class="bi bi-clock"></i> TimeMachine&trade;</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="timer.html"><i class="bi bi-clock"></i> Timer</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="alarm.html"><i class="bi bi-alarm"></i> Alarm</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="stopwatch.html"><i class="bi bi-stopwatch"></i>
+                Stopwatch</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="bg-dark mt-5">
+
+    <div class="container-fluid">
+      <div class="timer row justify-content-center">
+
+        <!-- timer set/display -->
+        <div class="col-md-9 col-lg-6">
+
+          <div class="timer__display row g-0 justify-content-center text-center border border-2 my-5 rounded-3">
+            <!-- hours : minutes : seconds : milliseconds-->
+            <div class="col-2">hr</div>
+            <div class="col-1"></div>
+            <div class="col-2">min</div>
+            <div class="col-1"></div>
+            <div class="col-2">sec</div>
+            <div class="col-1"></div>
+            <div class="col-2"><small>ms</small></div>
+            <div id="displayHours" class="col-2 display-1 text-center">00</div>
+            <div class="col-1 display-1 text-center">:</div>
+            <div id="displayMinutes" class="col-2 display-1 text-center">00</div>
+            <div class="col-1 display-1 text-center">:</div>
+            <div id="displaySeconds" class="col-2 display-1 text-center">00</div>
+            <div class="col-1 display-1 text-center">.</div>
+            <div id="displayMilliSeconds" class="col-2 display-4 align-self-end mb-1 text-center">000</div>
+          </div>
+
+          <div class="row justify-content-around justify-content-md-between mb-5 gy-2">
+            <button id="btnStartStopwatch" class="col-5 btn btn-secondary">Start</button>
+            <button id="btnResetStopwatch" class="col-5 btn btn-secondary">Reset</button>
+          </div>
+
+        </div>
+      </div>
+      <div class="row justify-content-center mb-3">
+        <div id="alarmContainer" class="toast-container">
+          <!-- Toasts for alarms will be inserted here -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer container-fluid pt-2 border-top border-2">
+    <div class="footer__row row gy-2 gy-sm-0 justify-content-center">
+      <div class="footer__column col-sm-3" aria-labelledby="footer-heading-1">
+        <div class="footer__heading" id="footer-heading-1">Used Technologies</div>
+        <ul class="footer__list">
+          <li class="footer__list-item"><a class="footer__link" href="https://html.spec.whatwg.org/multipage/">HTML5
+            </a></li>
+          <li class="footer__list-item"><a class="footer__link" href="https://www.w3.org/Style/CSS/">CSS3 </a></li>
+          <li class="footer__list-item"><a class="footer__link"
+              href="https://262.ecma-international.org/6.0/">Javascript ES6</a></li>
+          <li class="footer__list-item"><a class="footer__link"
+              href="https://getbootstrap.com/docs/5.1/getting-started/introduction/">Bootstrap 5.1</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__column col-sm-3" aria-labelledby="footer-heading-2">
+        <div class="footer__heading" id="footer-heading-2">Special Thanks</div>
+        <ul class="footer__list">
+          <li class="footer__list-item"><a class="footer__link" href="mailto:malan@harvard.edu?subject=feedback">David
+              J. Malan
+            </a></li>
+          <li class="footer__list-item"><a class="footer__link"
+              href="mailto:brian@cs.harvard.edu?subject=feedback">Brian Yu</a></li>
+          <li class="footer__list-item"><a class="footer__link"
+              href="mailto:lloyd@cs50.harvard.edu?subject=feedback">Doug Lloyd</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__column col-sm-3" aria-labelledby="footer-heading-3">
+        <div class="footer__heading" id="footer-heading-3">Contact</div>
+        <ul class="footer__list">
+          <li class="footer__list-item"><a class="footer__link" href="https://github.com/arensonzz">GitHub</a></li>
+          <li class="footer__list-item"><a class="footer__link" href="#">LinkedIn</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__info col-sm-12 small text-center mb-2">
+        &copy; 2021 - arensonz
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Import Bootstrap  -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+    integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
+    integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous">
+  </script>
+
+  <!-- Import scripts -->
+  <script src="stopwatch.js"></script>
+</body>
+
+</html>

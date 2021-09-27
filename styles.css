@@ -1,0 +1,57 @@
+/* Common to all pages */
+
+@media (max-width: 576px) {
+  .footer__row {
+    text-align: center;
+  }
+}
+
+@media (min-width: 576px) {
+  /* Make card images the same height after sm breakpoint */
+  .card-img-top {
+    width: 100%;
+    height: 20vw;
+    object-fit: cover;
+  }
+}
+
+#featuresSection {
+  min-height: 600px;
+}
+
+.footer__list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer__heading {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer__link {
+  color: white;
+  text-decoration: none;
+}
+
+/* timer.html */
+.timer__set-button {
+  width: 50%;
+  background: none;
+  border: none;
+}
+
+.timer__arrow:hover {
+  transform: scale(1.1);
+}
+
+.timer__set-button--down {
+  transform: rotate(180deg);
+}
+
+.progress-bar {
+  transition: width 1s;
+}
+
+/* alarm.html */

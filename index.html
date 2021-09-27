@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Import Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="styles.css">
+  <title>Alarms & Clock</title>
+</head>
+
+<body class="bg-dark text-light">
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-2">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <i class="bi bi-clock"></i> TimeMachine&trade;</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="timer.html"><i class="bi bi-clock"></i> Timer</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="alarm.html"><i class="bi bi-alarm"></i> Alarm</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="stopwatch.html"><i class="bi bi-stopwatch"></i> Stopwatch</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="bg-dark">
+    <section class="container mt-5 pb-5 border-bottom border-2">
+      <div class="row">
+        <div class="col-md-6">
+          <h1 class="mb-4">
+            <span class="display-2">All in One Clock Utility<br></span>
+            <span class="lead fs-4">Everything you ever imagined!</span>
+          </h1>
+          <p>You won't need another clock from now on. <span class="fw-bold">TimeMachine&trade;</span> has all you need.
+            Jump into the machine and rule the time!</p>
+        </div>
+        <div class="col-md-6 mt-3">
+          <img class="img-fluid rounded border border-light border-3" src="assets/sandglass.jpg" alt="Sandglass">
+        </div>
+      </div>
+    </section>
+    <section class="container mt-5 text-center">
+      <h2 class="display-3">Features</h2>
+      <div class="lead fs-3">Let's explore what kind of things you can do with this!</div>
+
+      <div class="row mt-3 mb-5 g-3 justify-content-center">
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="card border-0 bg-secondary text-light h-100">
+            <img src="assets/timer.jpg" class="card-img-top bg-dark d-none d-sm-block"
+              alt="Timer that has 60 minutes countdown on it">
+            <div class="card-body">
+              <h5 class="card-title"><i class="bi bi-clock pe-2"></i>Timer</h5>
+              <p class="card-text">Best tool when you need to finish something just in time.</p>
+              <a href="timer.html" class="card-link text-warning">Try now!</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="card border-0 bg-secondary text-light h-100">
+            <img src="assets/alarm.jpg" class="card-img-top bg-dark d-none d-sm-block"
+              alt="Timer that has 60 minutes countdown on it">
+            <div class="card-body">
+              <h5 class="card-title"><i class="bi bi-alarm pe-2"></i>Alarm</h5>
+              <p class="card-text">Never forget your duties with bell and notifications.</p>
+              <a href="alarm.html" class="card-link text-warning">Try now!</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="card border-0 bg-secondary text-white h-100">
+            <img src="assets/stopwatch.jpg" class="card-img-top bg-dark d-none d-sm-block"
+              alt="Timer that has 60 minutes countdown on it">
+            <div class="card-body">
+              <h5 class="card-title"><i class="bi bi-stopwatch pe-2"></i>Stopwatch</h5>
+              <p class="card-text">Your only coach when you're racing with time!</p>
+              <a href="stopwatch.html" class="card-link text-warning">Try now!</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <footer class="footer container-fluid pt-2 border-top border-2">
+      <div class="footer__row row gy-2 gy-sm-0 justify-content-center">
+        <div class="footer__column col-sm-3" aria-labelledby="footer-heading-1">
+          <div class="footer__heading" id="footer-heading-1">Used Technologies</div>
+          <ul class="footer__list">
+            <li class="footer__list-item"><a class="footer__link" href="https://html.spec.whatwg.org/multipage/">HTML5
+              </a></li>
+            <li class="footer__list-item"><a class="footer__link" href="https://www.w3.org/Style/CSS/">CSS3 </a></li>
+            <li class="footer__list-item"><a class="footer__link"
+                href="https://262.ecma-international.org/6.0/">Javascript ES6</a></li>
+            <li class="footer__list-item"><a class="footer__link"
+                href="https://getbootstrap.com/docs/5.1/getting-started/introduction/">Bootstrap 5.1</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__column col-sm-3" aria-labelledby="footer-heading-2">
+          <div class="footer__heading" id="footer-heading-2">Special Thanks</div>
+          <ul class="footer__list">
+            <li class="footer__list-item"><a class="footer__link" href="mailto:malan@harvard.edu?subject=feedback">David
+                J. Malan
+              </a></li>
+            <li class="footer__list-item"><a class="footer__link"
+                href="mailto:brian@cs.harvard.edu?subject=feedback">Brian Yu</a></li>
+            <li class="footer__list-item"><a class="footer__link"
+                href="mailto:lloyd@cs50.harvard.edu?subject=feedback">Doug Lloyd</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__column col-sm-3" aria-labelledby="footer-heading-3">
+          <div class="footer__heading" id="footer-heading-3">Contact</div>
+          <ul class="footer__list">
+            <li class="footer__list-item"><a class="footer__link" href="https://github.com/arensonzz">GitHub</a></li>
+            <li class="footer__list-item"><a class="footer__link" href="#">LinkedIn</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__info col-sm-12 small text-center mb-2">
+          &copy; 2021 - arensonz
+        </div>
+      </div>
+
+    </footer>
+
+  </main>
+
+  <!-- Import Bootstrap  -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+    integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
+    integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous">
+  </script>
+
+  <script src="index.js"></script>
+</body>
+
+</html>
