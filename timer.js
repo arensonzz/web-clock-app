@@ -1,5 +1,51 @@
 'use strict';
 
+const displayHours = document.getElementById('displayHours');
+const displayMinutes = document.getElementById('displayMinutes');
+const displaySeconds = document.getElementById('displaySeconds');
+
+const btnIncreaseHours = document.getElementById('btnIncreaseHours');
+const btnIncreaseMinutes = document.getElementById('btnIncreaseMinutes');
+const btnIncreaseSeconds = document.getElementById('btnIncreaseSeconds');
+
+const btnDecreaseHours = document.getElementById('btnDecreaseHours');
+const btnDecreaseMinutes = document.getElementById('btnDecreaseMinutes');
+const btnDecreaseSeconds = document.getElementById('btnDecreaseSeconds');
+
+const timerProgressBar = document.getElementById('timerProgressBar');
+
+const btnStartTimer = document.getElementById('btnStartTimer');
+const btnResetTimer = document.getElementById('btnResetTimer');
+
+const timerSet = document.getElementById('timerSet');
+
+let countdown;
+let finishDateMS; // finish date in UNIX epoch milliseconds
+let pauseDateMS;
+
+function updateTimer() {
+  let totalSecondsLeft = Math.round((finishDateMS - Date.now()) / 1000);
+  if (totalSecondsLeft <= 0) {
+    const timerToast = document.getElementById('timerToast');
+    const toast = new bootstrap.Toast(timerToast);
+    toast.show();
+    const bell = new Audio('assets/achievement_bell.wav');
+    bell.play();
+    btnResetTimer.click();
+  } else {
+    timerString = toHHMMSS(totalSecondsLeft);
+    document.getElementById('timerString').innerText = timerString;
+    const percent =
+      Math.floor(
+        (totalSecondsLeft / +timerProgressBar.getAttribute('aria-valuemax')) *
+          100
+      ) + '%';
+    timerProgressBar.style.width = percent;
+    timerProgressBar.innerText = percent;
+    timerProgressBar.setAttribute('aria-valuenow', totalSecondsLeft);
+  }
+}
+
 function toHHMMSS(secs) {
   let secsDec = parseInt(secs, 10);
   let hours = Math.floor(secsDec / 3600);
@@ -29,28 +75,6 @@ function normalizeClockNumber(num, min, max) {
   return String(num).padStart(2, '0');
 }
 
-const displayHours = document.getElementById('displayHours');
-const displayMinutes = document.getElementById('displayMinutes');
-const displaySeconds = document.getElementById('displaySeconds');
-
-const btnIncreaseHours = document.getElementById('btnIncreaseHours');
-const btnIncreaseMinutes = document.getElementById('btnIncreaseMinutes');
-const btnIncreaseSeconds = document.getElementById('btnIncreaseSeconds');
-
-const btnDecreaseHours = document.getElementById('btnDecreaseHours');
-const btnDecreaseMinutes = document.getElementById('btnDecreaseMinutes');
-const btnDecreaseSeconds = document.getElementById('btnDecreaseSeconds');
-
-const timerProgressBar = document.getElementById('timerProgressBar');
-
-const btnStartTimer = document.getElementById('btnStartTimer');
-const btnResetTimer = document.getElementById('btnResetTimer');
-
-const timerSet = document.getElementById('timerSet');
-
-let countdown;
-let totalSecondsLeft;
-
 btnResetTimer.addEventListener('click', () => {
   displayHours.textContent = '00';
   displayMinutes.textContent = '00';
@@ -77,11 +101,11 @@ btnStartTimer.addEventListener('click', () => {
   switch (btnStartTimer.innerText) {
     case 'Start':
       timerProgressBar.style.visibility = 'visible';
-      totalSecondsLeft =
+      let totalSecondsLeft =
         +displayHours.innerText * 3600 +
         +displayMinutes.innerText * 60 +
         +displaySeconds.innerText;
-      if (totalSecondsLeft == 0) {
+      if (totalSecondsLeft <= 0) {
         timerProgressBar.style.width = '0%';
         timerProgressBar.innerText = '0%';
         timerProgressBar.setAttribute('aria-valuenow', totalSecondsLeft);
@@ -93,6 +117,7 @@ btnStartTimer.addEventListener('click', () => {
       timerProgressBar.setAttribute('aria-valuenow', totalSecondsLeft);
       timerProgressBar.setAttribute('aria-valuemax', totalSecondsLeft);
 
+      finishDateMS = Date.now() + totalSecondsLeft * 1000;
       let timerString = toHHMMSS(totalSecondsLeft);
 
       timerSet.style.display = 'none';
@@ -109,61 +134,18 @@ btnStartTimer.addEventListener('click', () => {
       document.getElementById('timerDownButtons').style.visibility = 'hidden';
 
       btnStartTimer.innerText = 'Stop';
-      totalSecondsLeft--;
-      countdown = setInterval(() => {
-        if (totalSecondsLeft == 0) {
-          // alert('Finished!');
-          const timerToast = document.getElementById('timerToast');
-          const toast = new bootstrap.Toast(timerToast);
-          toast.show();
-          const bell = new Audio('assets/achievement_bell.wav');
-          bell.play();
-          btnResetTimer.click();
-        } else {
-          timerString = toHHMMSS(totalSecondsLeft--);
-          document.getElementById('timerString').innerText = timerString;
-          const percent =
-            Math.floor(
-              (totalSecondsLeft /
-                +timerProgressBar.getAttribute('aria-valuemax')) *
-                100
-            ) + '%';
-          timerProgressBar.style.width = percent;
-          timerProgressBar.innerText = percent;
-          timerProgressBar.setAttribute('aria-valuenow', totalSecondsLeft);
-        }
-      }, 1000);
+      countdown = setInterval(updateTimer, 200);
 
       break;
     case 'Stop':
       btnStartTimer.innerText = 'Resume';
+      pauseDateMS = Date.now();
       clearInterval(countdown);
       break;
     case 'Resume':
       btnStartTimer.innerText = 'Stop';
-      countdown = setInterval(() => {
-        if (totalSecondsLeft == 0) {
-          // alert('Finished!');
-          const timerToast = document.getElementById('timerToast');
-          const toast = new bootstrap.Toast(timerToast);
-          const bell = new Audio('assets/achievement_bell.wav');
-          bell.play();
-          toast.show();
-          btnResetTimer.click();
-        } else {
-          let timerString = toHHMMSS(totalSecondsLeft--);
-          document.getElementById('timerString').innerText = timerString;
-          const percent =
-            Math.floor(
-              (totalSecondsLeft /
-                +timerProgressBar.getAttribute('aria-valuemax')) *
-                100
-            ) + '%';
-          timerProgressBar.style.width = percent;
-          timerProgressBar.innerText = percent;
-          timerProgressBar.setAttribute('aria-valuenow', totalSecondsLeft);
-        }
-      }, 1000);
+      finishDateMS += Date.now() - pauseDateMS;
+      countdown = setInterval(updateTimer, 200);
       break;
   }
 });
