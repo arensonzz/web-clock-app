@@ -1,13 +1,13 @@
-'use strict';
+"use strict";
 
-const btnStartStopwatch = document.getElementById('btnStartStopwatch');
-const btnResetStopwatch = document.getElementById('btnResetStopwatch');
-const btnFinishStopwatch = document.getElementById('btnFinishStopwatch');
-const displayHours = document.getElementById('displayHours');
-const displayMinutes = document.getElementById('displayMinutes');
-const displaySeconds = document.getElementById('displaySeconds');
-const displayMilliSeconds = document.getElementById('displayMilliSeconds');
-const stopwatchTimesBody = document.getElementById('stopwatchTimesBody');
+const btnStartStopwatch = document.getElementById("btnStartStopwatch");
+const btnResetStopwatch = document.getElementById("btnResetStopwatch");
+const btnFinishStopwatch = document.getElementById("btnFinishStopwatch");
+const displayHours = document.getElementById("displayHours");
+const displayMinutes = document.getElementById("displayMinutes");
+const displaySeconds = document.getElementById("displaySeconds");
+const displayMilliSeconds = document.getElementById("displayMilliSeconds");
+const stopwatchTimesBody = document.getElementById("stopwatchTimesBody");
 
 let stopwatchInterval;
 let stopwatchStart;
@@ -17,28 +17,23 @@ let isTicking = false;
 
 function resetStopwatch() {
   clearInterval(stopwatchInterval);
-  displayHours.innerText = '00';
-  displayMinutes.innerText = '00';
-  displaySeconds.innerText = '00';
-  displayMilliSeconds.innerText = '000';
-  btnStartStopwatch.innerText = 'Start';
+  displayHours.innerText = "00";
+  displayMinutes.innerText = "00";
+  displaySeconds.innerText = "00";
+  displayMilliSeconds.innerText = "000";
+  btnStartStopwatch.innerText = "Start";
 }
 
 function updateStopwatch() {
   let stopwatchNow = new Date(Date.now() - stopwatchStart);
 
-  displayHours.innerText = String(stopwatchNow.getUTCHours()).padStart(2, '0');
-  displayMinutes.innerText = String(stopwatchNow.getUTCMinutes()).padStart(
+  displayHours.innerText = String(stopwatchNow.getUTCHours()).padStart(2, "0");
+  displayMinutes.innerText = String(stopwatchNow.getUTCMinutes()).padStart(2, "0");
+  displaySeconds.innerText = String(stopwatchNow.getUTCSeconds()).padStart(2, "0");
+  displayMilliSeconds.innerText = String(stopwatchNow.getUTCMilliseconds()).padStart(
     2,
-    '0'
+    "0"
   );
-  displaySeconds.innerText = String(stopwatchNow.getUTCSeconds()).padStart(
-    2,
-    '0'
-  );
-  displayMilliSeconds.innerText = String(
-    stopwatchNow.getUTCMilliseconds()
-  ).padStart(2, '0');
 }
 
 function toHHMMSSMS(msecs) {
@@ -52,31 +47,31 @@ function toHHMMSSMS(msecs) {
 
   return (
     [hours, minutes, seconds]
-      .map((v) => (v < 10 ? '0' + v : v))
-      .filter((v, i) => v !== '00' || i > 0)
-      .join(':') +
-    '.' +
-    String(milliseconds).padStart(3, '0')
+      .map((v) => (v < 10 ? "0" + v : v))
+      .filter((v, i) => v !== "00" || i > 0)
+      .join(":") +
+    "." +
+    String(milliseconds).padStart(3, "0")
   );
 }
 
-btnStartStopwatch.addEventListener('click', () => {
+btnStartStopwatch.addEventListener("click", () => {
   switch (btnStartStopwatch.innerText) {
-    case 'Start':
-      btnStartStopwatch.innerText = 'Stop';
+    case "Start":
+      btnStartStopwatch.innerText = "Stop";
       isTicking = true;
       stopwatchPassedMS = 0;
       stopwatchStart = Date.now();
       stopwatchInterval = setInterval(updateStopwatch, 10);
       break;
-    case 'Stop':
-      btnStartStopwatch.innerText = 'Resume';
+    case "Stop":
+      btnStartStopwatch.innerText = "Resume";
       isTicking = false;
       stopwatchPassedMS = Date.now() - stopwatchStart;
       clearInterval(stopwatchInterval);
       break;
-    case 'Resume':
-      btnStartStopwatch.innerText = 'Stop';
+    case "Resume":
+      btnStartStopwatch.innerText = "Stop";
       stopwatchStart = Date.now() - stopwatchPassedMS;
       stopwatchPassedMS = 0;
       isTicking = true;
@@ -85,15 +80,15 @@ btnStartStopwatch.addEventListener('click', () => {
   }
 });
 
-btnResetStopwatch.addEventListener('click', () => {
+btnResetStopwatch.addEventListener("click", () => {
   resetStopwatch();
   lastTimeId = 1;
   isTicking = false;
   stopwatchPassedMS = 0;
-  stopwatchTimesBody.innerHTML = '';
+  stopwatchTimesBody.innerHTML = "";
 });
 
-btnFinishStopwatch.addEventListener('click', () => {
+btnFinishStopwatch.addEventListener("click", () => {
   let stopwatchString;
 
   resetStopwatch();
@@ -106,7 +101,7 @@ btnFinishStopwatch.addEventListener('click', () => {
     stopwatchString = toHHMMSSMS(Date.now() - stopwatchStart);
   }
   stopwatchTimesBody.insertAdjacentHTML(
-    'afterbegin',
+    "afterbegin",
     `
               <tr>
                 <td>${lastTimeId}</td>
